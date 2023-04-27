@@ -57,15 +57,12 @@ export default function updateProducts({ params }) {
          updateNow()
     }
 
-
-
-
     return (
         <div className='w-full h-screen bg-slate-900 flex'>
             <Sidebar_com />
             <div className='w-10/12 h-full text-white flex flex-col items-center overflow-auto'>
                 <div className='w-full p-4  mt-10 mb-4 flex items-center justify-center'>
-                    <h1 className='text-4xl font-semibold tracking-widest border-b p-2 uppercase'>Add  Category</h1>
+                    <h1 className='text-4xl font-semibold tracking-widest p-2 uppercase'>Edit Product Details</h1>
                 </div>
 
                 <form className='text-white' onSubmit={handleSubmit}>
