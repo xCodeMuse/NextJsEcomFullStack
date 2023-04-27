@@ -5,7 +5,7 @@ import {  useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FileBase from 'react-file-base64'
-import { add_Category } from '../services'
+import { add_Category } from '@/app/services'
 
 export default function AddCategory() {
     const [formData, setFormData] = useState({ name: '', slug: '', description: '', featured: false, image: '' })

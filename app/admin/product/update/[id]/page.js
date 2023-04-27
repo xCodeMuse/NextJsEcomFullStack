@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FileBase from 'react-file-base64'
-import { update_product,  getProductByID } from '../../../services'
+import { update_product,  getProductByID } from '@/app/services'
 import { useRouter } from 'next/navigation';
 
 import Image from 'next/image';

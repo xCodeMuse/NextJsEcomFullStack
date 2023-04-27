@@ -5,7 +5,7 @@ import {  useState,useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FileBase from 'react-file-base64'
-import { add_products , getCategoriesData } from '../../services'
+import { add_products , getCategoriesData } from '@/app/services'
 
 
 export default function addProduct() {

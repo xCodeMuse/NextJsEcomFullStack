@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import Sidebar_com from '../components/Sidebar_com'
-import { deleteCategory, getCategoriesData } from '../services'
+import { deleteCategory, getCategoriesData } from '@/app/services'
 import { ToastContainer, toast } from 'react-toastify';
 import Link from 'next/link';
 import 'react-toastify/dist/ReactToastify.css';

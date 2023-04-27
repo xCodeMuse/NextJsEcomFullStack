@@ -1,4 +1,4 @@
-import { getUserData } from '../services'
+import { getUserData } from '@/app/services'
 import React,{Suspense} from 'react'
 import Sidebar_com from '../components/Sidebar_com'
 
