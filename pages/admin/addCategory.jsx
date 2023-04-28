@@ -9,8 +9,6 @@ import { add_Category } from '@/services/admin'
 export default function AddCategory() {
     const [formData, setFormData] = useState({ name: '', slug: '', description: '', featured: false, image: '' })
 
-    
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,8 +22,6 @@ export default function AddCategory() {
             toast.error(res.error);
         }
     }
-
-
 
 
     return (
