@@ -125,9 +125,9 @@ export const add_products = async (product) => {
 
 
 // getting all products data
-export const getProductsData = async () => {
+export const getProductsData = async (featured) => {
     try {
-        const res = await fetch(`${baseURl}/api/admin/product`, {
+        const res = await fetch(`${baseURl}/api/admin/product?featured=${featured}`, {
             method: 'GET',
         })
         const data = await res.json();
@@ -194,6 +194,7 @@ export const get_Product_By_Category = async (id) => {
         const res = await fetch(`${baseURl}/api/frontend/getProductByCategory?id=${id}`, {
             method: "GET",
         });
+        console.log(res)
         const data = await res.json();
         return data;
     } catch (error) {

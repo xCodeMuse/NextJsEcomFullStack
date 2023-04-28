@@ -93,9 +93,13 @@ const updateProduct = async (req) => {
 
 // get Product
 const getProduct = async (req) => {
-
+    const status = req.nextUrl.searchParams.get('featured')
     try {
-        const data = await Product.find();
+        const searchParams ={}
+        if(status && status == 'true'){
+          searchParams.featured = true
+        }
+        const data = await Product.find({...searchParams});
         return new Response(JSON.stringify(data), {
             status:200,
             headers: {

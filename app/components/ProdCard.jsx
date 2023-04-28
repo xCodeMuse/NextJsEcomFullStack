@@ -50,9 +50,9 @@ export default function ProdCard({ item }) {
             }
 
             <div className='w-full h-2/6  p-2'>
-                <p className='text-lg font-bold px-2 py-1 uppercase tracking-wider'>{item.name}</p>
+                <p className='text-lg font-bold px-2 py-1 uppercase tracking-wider text-black'>{item.name}</p>
                 <div className='flex w-full justify-between items-center'>
-                    <p className='text-lg font-bold px-2 py-1'>$ {item.price}</p>
+                    <p className='text-lg font-bold px-2 py-1 text-black'>$ {item.price}</p>
                     
                     <svg
                 xmlns="http://www.w3.org/2000/svg"

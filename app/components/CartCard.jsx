@@ -10,20 +10,15 @@ export default function CartCard({ item, userID, reupdate }) {
 
     const [Curquantity, setCurQuantity] = useState(1);
 
-
-
-
     const delete_cart = async () => {
         
     }
-
 
     const updateQuantity = async () => {
        
     }
 
     const handleAdd = () => {
-       
         
     }
 
