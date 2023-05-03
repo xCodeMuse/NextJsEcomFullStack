@@ -5,7 +5,7 @@ import User from "../../../database/models/User";
 
 export async function GET(req) {
 
-    await connectDB();
+    await connectDB('user get');
     
     try {
         const data = await User.find({ "isAdmin": false });

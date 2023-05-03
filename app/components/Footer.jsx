@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Footer() {
     return (
-      <footer className="container mx-auto px-10 md:px-0 py-10">
+      <footer className="container mx-auto px-10 md:px-10 py-10">
       <div className="mb-16 flex flex-col md:flex-row md:items-center justify-between">
         <div>
           <svg

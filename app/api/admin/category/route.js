@@ -1,6 +1,5 @@
 import connectDB from "../../../database/connectDB";
 import Category from "../../../database/models/Category";
-import { useSearchParams } from 'next/navigation';
 
 export async function POST(request) {
   await connectDB();
@@ -8,7 +7,7 @@ export async function POST(request) {
 }
 
 export async function GET(request) {
-  await connectDB();
+  await connectDB('category get');
   return await getCategory(request)
 }
 

@@ -1,7 +1,5 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { BiLogIn, BiLogOut } from 'react-icons/bi'
 import "react-tooltip/dist/react-tooltip.css";
 import Cookies from 'js-cookie'
@@ -77,10 +75,10 @@ export default function Navbar({pos}) {
             <div className=' h-full flex item-center  justify-center px-4'>
                 <ul className='w-full h-full flex items-center justify-center'>
                     <li onClick={() => router.push('/')} className={`mx-4 p-2 text-lg cursor-pointer transition-all duration-500 hover:text-orange-600 ${!scrolled && "dark:text-black"}`}>Home</li>
+                    <li onClick={() => router.push('/productList')} className={`mx-4 p-2 text-lg cursor-pointer transition-all duration-500 hover:text-orange-600 ${!scrolled && "dark:text-black"}`}>Products</li>
                     <li className={`mx-4 p-2 text-lg cursor-pointer transition-all duration-500 hover:text-orange-600 ${!scrolled && "dark:text-black"}`}>About</li>
                     <li className={`mx-4 p-2 text-lg cursor-pointer transition-all duration-500 hover:text-orange-600 ${!scrolled && "dark:text-black"}`}>Contact</li>
-                    <li className={`mx-4 p-2 text-lg cursor-pointer transition-all duration-500 hover:text-orange-600 ${!scrolled && "dark:text-black"}`}>Products</li>
-                </ul>
+                     </ul>
             </div>
             <div className=' h-full  flex items-center  justify-around px-4'>
             <svg
@@ -90,10 +88,10 @@ export default function Navbar({pos}) {
                 strokeWidth="2"
                 stroke="currentColor"
                 aria-hidden="true"
-                className={`ltr:mr-3 rtl:ml-3 h-5 w-5 transition-all duration-500 cursor-pointer ${!scrolled ? "text-black":"text-white"}`} onClick={()  => Router.push('/cart')} >
+                className={`ltr:mr-3 rtl:ml-3 h-5 w-5 transition-all duration-500 cursor-pointer ${!scrolled ? "text-black":"text-white"}`} onClick={()  => router.push('/cart')} >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  srokeLinejoin="round"
                   d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
               </svg>
                 

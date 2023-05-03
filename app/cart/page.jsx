@@ -1,7 +1,6 @@
+"use client"
 import React, { useEffect, useState } from 'react'
-import Footer from '@/app/components/Footer'
-import Navbar from '@/app/components/Footer'
-import CartCard from './components/CartCard'
+import{ Navbar, Footer, CartCard } from '@/app/components'
 import { get_cart_data } from '@/app/services'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,7 +11,7 @@ import { BsCartPlusFill } from 'react-icons/bs'
 export default function cart() {
     const [cartItem, setCartItem] = useState([]);
     const [userID, setUserID] = useState(undefined);
-
+    const [totalPrice,setTotalPrice] = useState(0)
     const getLatestCartData = async () => {
         const getUser = localStorage.getItem('user');
 
@@ -21,7 +20,18 @@ export default function cart() {
             setUserID(user?._id);
             const data = await get_cart_data(user?._id);
             setCartItem(data);
+
+            // calculating Price 
+            let cartPrice = 0;
+             for (let i = 0; i < data?.length; i++) {
+                const item = data[i];
+        
+                const itemPrice = parseInt(item.productPrice) * parseInt(item.productQuantity);
+                cartPrice += itemPrice;
+            }
+            setTotalPrice(cartPrice)
         }
+        
     }
 
     useEffect(() => {
@@ -29,26 +39,16 @@ export default function cart() {
     }, [])
 
 
-    // calculating Price 
-    let totalPrice = 0;
-    for (let i = 0; i < cartItem.length; i++) {
-        const item = cartItem[i];
-        
-        const itemPrice = parseInt(item.productPrice) * parseInt(item.productQuantity);
-        totalPrice += itemPrice;
-    }
-
-
-
     return (
         <div className='w-full h-screen'>
+            {console.log(cartItem)}
             <Navbar pos={""} />
             <div className='w-full h-96 bg-white flex flex-col px-4 py-2'>
                 <h1 className='text-2xl font-bold mb-4 '>MY CART ITEMS</h1>
                 {
                     cartItem?.length === 0 ? (
                         <div className='w-full h-full  overflow-auto px-4 py-2 flex items-center justify-center flex-col'>
-                            <h1 className='text-2xl font-bold mb-4 '>No Items in Cart</h1>
+                            <h1 className='text-2xl font-bold mb-4 dark:text-black'>No Items in Cart</h1>
                             <Link href='/frontend/landing' className='w-52 h-12 bg-orange-600 text-xl font-bold text-white flex items-center justify-center text-center rounded-xl'><BsCartPlusFill className='text-xl mx-2' />Start Shopping</Link>
                         </div>
                     ) : (

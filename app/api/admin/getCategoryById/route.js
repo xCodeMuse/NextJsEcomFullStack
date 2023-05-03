@@ -4,7 +4,7 @@ import Category from "../../../database/models/Category";
 
 export async function GET(req)
 {
-    await connectDB();
+    await connectDB('category get by id');
     const id = req.nextUrl.searchParams.get('id')
     try
     {

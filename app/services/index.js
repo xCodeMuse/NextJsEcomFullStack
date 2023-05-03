@@ -1,6 +1,6 @@
 
 // base URl for all api calls
-const baseURl = `http://localhost:3000`;
+const baseURl = `http://localhost:3001`;
 
 
 // getting all users data
@@ -127,13 +127,29 @@ export const add_products = async (product) => {
 // getting all products data
 export const getProductsData = async (featured) => {
     try {
-        const res = await fetch(`${baseURl}/api/admin/product?featured=${featured}`, {
+        const url = featured ? `${baseURl}/api/admin/product?featured=${featured}&limit=8`:`${baseURl}/api/admin/product`
+        const res = await fetch(url, {
             method: 'GET',
         })
         const data = await res.json();
         return data;
     } catch (error) {
         console.log('error in getting products data (services) => ' + error);
+    }
+}
+
+// --------------------------------- Add to cart --------------------------------------------------------------------
+
+export const getOneProductById = async (id) => {
+    try {
+        const res = await fetch(`${baseURl}/api/admin/product?id=${id}`, {
+            method: 'GET'
+        })
+        const data = await res.json();
+        return data;
+    }
+    catch (error) {
+        console.log('error in getting specific product (services) => ' + error)
     }
 }
 

@@ -29,7 +29,7 @@ export default function viewProductByCategories({ params }) {
         <div className='w-full flex flex-col '>
             <Navbar pos={"absolute"} />
             <div className="w-full h-full px-4 bg-white py-10 my-24">
-                <Link href={'/'} className="my-24 text-indigo-600 border-slate-900 p-2 text-lg font-semibold">Home / {catName}</Link>
+                <Link href={'/'} className="my-10 mx-4 flex justify-center text-indigo-600 border-slate-900 p-2 text-lg font-semibold">{catName}</Link>
                 <div className='my-10 mx-4 flex flex-wrap py-4 items-center justify-center'>
                     {
                         product?.map((item) => {

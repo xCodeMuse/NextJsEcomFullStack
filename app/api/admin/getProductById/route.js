@@ -4,7 +4,7 @@ import Product from "../../../database/models/Product";
 
 export async function GET(req)
 {
-    await connectDB();
+    await connectDB('product get by id');
 
     const id = req.nextUrl.searchParams.get('id')
 

@@ -8,7 +8,6 @@ import Link from 'next/link';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-
 export default function categories() {
     const [finalData, setFinalData] = useState([]);
     const [updateListFlag,setUpdateListFlag] = useState(0)
@@ -20,7 +19,6 @@ export default function categories() {
         loadData()
     },[updateListFlag])
    
-
     const handleDelete = async (id) => {
         
         const data = await deleteCategory(id);

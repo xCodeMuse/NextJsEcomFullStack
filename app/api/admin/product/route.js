@@ -8,7 +8,7 @@ export async function POST(request) {
   }
   
   export async function GET(request) {
-    await connectDB();
+    await connectDB('product get');
     return await getProduct(request)
   }
   
@@ -94,12 +94,24 @@ const updateProduct = async (req) => {
 // get Product
 const getProduct = async (req) => {
     const status = req.nextUrl.searchParams.get('featured')
+    let limit = req.nextUrl.searchParams.get('limit')
+    const id = req.nextUrl.searchParams.get('id')
     try {
         const searchParams ={}
+        
         if(status && status == 'true'){
           searchParams.featured = true
         }
-        const data = await Product.find({...searchParams});
+        
+        let data
+        if(id){
+          data = await Product.findById(id);
+        }else if(limit){
+          data = await Product.find({...searchParams}).limit(limit);
+        }else{
+          data = await Product.find({...searchParams});
+        }
+       
         return new Response(JSON.stringify(data), {
             status:200,
             headers: {
