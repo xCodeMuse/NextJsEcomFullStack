@@ -51,7 +51,7 @@ export default function Navbar({pos}) {
        <> <div className={` ${scrolled ? "bg-slate-900" : "transparent"} z-50  w-full h-24  text-white flex justify-around ${pos} top-0 left-0`}>
             <a
           className="text-3xl font-bold leading-none flex items-center space-x-4"
-          href="#"
+          href="/"
         >
           <span>
             <svg

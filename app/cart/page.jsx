@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { BsCartPlusFill } from 'react-icons/bs'
 
 
-export default function cart() {
+export default function cartPage() {
     const [cartItem, setCartItem] = useState([]);
     const [userID, setUserID] = useState(undefined);
     const [totalPrice,setTotalPrice] = useState(0)
@@ -18,6 +18,7 @@ export default function cart() {
         if(getUser){
             const user = JSON.parse(getUser);
             setUserID(user?._id);
+            console.log(user?._id)
             const data = await get_cart_data(user?._id);
             setCartItem(data);
 
@@ -49,7 +50,7 @@ export default function cart() {
                     cartItem?.length === 0 ? (
                         <div className='w-full h-full  overflow-auto px-4 py-2 flex items-center justify-center flex-col'>
                             <h1 className='text-2xl font-bold mb-4 dark:text-black'>No Items in Cart</h1>
-                            <Link href='/frontend/landing' className='w-52 h-12 bg-orange-600 text-xl font-bold text-white flex items-center justify-center text-center rounded-xl'><BsCartPlusFill className='text-xl mx-2' />Start Shopping</Link>
+                            <Link href='/' className='w-52 h-12 bg-indigo-200 hover:bg-indigo-400 text-xl font-bold text-white flex items-center justify-center text-center rounded-xl'><BsCartPlusFill className='text-xl mx-2' />Start Shopping</Link>
                         </div>
                     ) : (
                         <div className='w-full h-full  overflow-auto px-4 py-2'>
