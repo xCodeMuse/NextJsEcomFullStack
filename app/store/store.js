@@ -5,5 +5,9 @@ import { CartSlice } from "./Slices/cartSlice";
 export const store = configureStore({
     reducer :{
         cartData : CartSlice.reducer,
-    }
+    },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 })

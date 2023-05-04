@@ -6,12 +6,13 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link'
 import { BsCartPlusFill } from 'react-icons/bs'
-
+import { addToCart,fetchCart ,fetchCartById} from '../store/Slices/cartSlice';
+import { useSelector, useDispatch } from "react-redux";
 
 export default function cartPage() {
-    const [cartItem, setCartItem] = useState([]);
+    const cartItem = useSelector((state) => state.cartData)
     const [userID, setUserID] = useState(undefined);
-    const [totalPrice,setTotalPrice] = useState(0)
+    const dispatch = useDispatch()
     const getLatestCartData = async () => {
         const getUser = localStorage.getItem('user');
 
@@ -19,18 +20,16 @@ export default function cartPage() {
             const user = JSON.parse(getUser);
             setUserID(user?._id);
             console.log(user?._id)
-            const data = await get_cart_data(user?._id);
-            setCartItem(data);
-
+            dispatch(fetchCartById(user?._id));
             // calculating Price 
-            let cartPrice = 0;
-             for (let i = 0; i < data?.length; i++) {
-                const item = data[i];
+            // let cartPrice = 0;
+            //  for (let i = 0; i < data?.length; i++) {
+            //     const item = data[i];
         
-                const itemPrice = parseInt(item.productPrice) * parseInt(item.productQuantity);
-                cartPrice += itemPrice;
-            }
-            setTotalPrice(cartPrice)
+            //     const itemPrice = parseInt(item.productPrice) * parseInt(item.productQuantity);
+            //     cartPrice += itemPrice;
+            // }
+            // setTotalPrice(cartPrice)
         }
         
     }
@@ -44,10 +43,10 @@ export default function cartPage() {
         <div className='w-full h-screen'>
             {console.log(cartItem)}
             <Navbar pos={""} />
-            <div className='w-full h-96 bg-white flex flex-col px-4 py-2'>
+            <div className='w-full bg-white flex flex-col px-4 py-2'>
                 <h1 className='text-2xl font-bold mb-4 '>MY CART ITEMS</h1>
                 {
-                    cartItem?.length === 0 ? (
+                    cartItem?.cart?.length === 0 ? (
                         <div className='w-full h-full  overflow-auto px-4 py-2 flex items-center justify-center flex-col'>
                             <h1 className='text-2xl font-bold mb-4 dark:text-black'>No Items in Cart</h1>
                             <Link href='/' className='w-52 h-12 bg-indigo-200 hover:bg-indigo-400 text-xl font-bold text-white flex items-center justify-center text-center rounded-xl'><BsCartPlusFill className='text-xl mx-2' />Start Shopping</Link>
@@ -55,7 +54,7 @@ export default function cartPage() {
                     ) : (
                         <div className='w-full h-full  overflow-auto px-4 py-2'>
                             {
-                                cartItem?.map((item) => {
+                                cartItem?.cart?.map((item) => {
                                     return (
                                         <CartCard item={item} key={item._id} userID={userID} reupdate={getLatestCartData} />
                                     )
@@ -67,8 +66,8 @@ export default function cartPage() {
 
 
                 <div className='w-full p-2 flex items-end flex-col justify-center'>
-                    <h1 className='uppercase text-2xl font-bold py-3 border-b-2 border-gray-900 '>Total Price</h1>
-                    <p className='text-2xl font-semibold p-2'>$ {totalPrice}</p>
+                    <h1 className='uppercase text-2xl font-bold py-3 border-b-2 border-gray-900 dark:text-black'>Total Price</h1>
+                    <p className='text-2xl font-semibold p-2 dark:text-black'>$ {cartItem?.totalPrice}</p>
                     <button className='text-lg font-semibold bg-indigo-600 text-white uppercase px-4  py-2 cursor-pointer border-2 border-indigo-600 rounded-xl hover:bg-transparent hover:text-black duration-700 transition'>CheckOut</button>
                 </div>
             </div>

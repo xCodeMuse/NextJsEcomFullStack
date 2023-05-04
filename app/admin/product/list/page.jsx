@@ -107,8 +107,8 @@ export default function getProducts() {
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap text-center text-sm font-medium">
                           
-                          <Link href={`admin/product/update/${product._id}`} class="bg-indigo-500 mx-2 hover:bg-orange-900 text-white font-bold py-2 px-4 rounded-full">Update</Link>
-                          <button onClick={() => handleDelete(product._id)} class="bg-red-500 mx-2 hover:bg-red-900 text-white font-bold py-2 px-4 rounded-full">Delete</button>
+                          <Link href={`admin/product/update/${product._id}`} className="bg-indigo-500 mx-2 hover:bg-orange-900 text-white font-bold py-2 px-4 rounded-full">Update</Link>
+                          <button onClick={() => handleDelete(product._id)} className="bg-red-500 mx-2 hover:bg-red-900 text-white font-bold py-2 px-4 rounded-full">Delete</button>
                                                         
                         </td>
                       </tr>

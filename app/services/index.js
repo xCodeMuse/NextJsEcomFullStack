@@ -257,12 +257,11 @@ export const get_cart_data = async (id) => {
 
 export const delete_cart_data = async (data) => {
     try {
-        const res = await fetch(`${baseURl}/api/frontend/cart`, {
+        const res = await fetch(`${baseURl}/api/frontend/cart?productId=${data.productID}&userId=${data.userId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
         })
         const reply = await res.json();
         return reply;

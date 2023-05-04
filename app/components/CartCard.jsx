@@ -1,17 +1,19 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { AiOutlineDelete } from 'react-icons/ai'
-import { delete_cart_data, update_cart_data } from '@/app/services'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { removeFromCart } from '../store/Slices/cartSlice';
+import { useDispatch } from 'react-redux';
 
 export default function CartCard({ item, userID, reupdate }) {
 
-    const [Curquantity, setCurQuantity] = useState(1);
+    const [Curquantity, setCurQuantity] = useState(item?.productQuantity);
+    const dispatch = useDispatch()
 
     const delete_cart = async () => {
-        
+        const data = {productID:item.productID, userId:userID}
+        dispatch(removeFromCart(data))
     }
 
     const updateQuantity = async () => {
@@ -28,9 +30,9 @@ export default function CartCard({ item, userID, reupdate }) {
 
 
     return (
-        <div className='text-white w-full h-32  flex justify-around items-center bg-slate-900 rounded-xl my-4'>
+        <div className='text-white w-full h-32  flex justify-around items-center bg-indigo-500 rounded-xl my-4'>
             <div className='w-40 h-full flex items-center justify-center '>
-                <Image src={item.productImage} alt="hello" height={100} width={100} />
+                <Image src={item.productImage} alt="pdtImage" height={54} width={56} className='object-fill'/>
             </div>
             <div className='w-40 h-full flex items-center justify-center '>
                 <p className='text-xl font-semibold '>{item.productName}</p>
