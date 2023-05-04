@@ -7,7 +7,7 @@ console.log(baseURl,'env baseUrl')
 export const getUserData = async () => {
     
     try {
-        const res = await fetch(`${baseURl}/api/admin/user`, {
+        const res = await fetch(`/api/admin/user`, {
             method: 'GET',
         })
         const data = await res.json();
@@ -21,7 +21,7 @@ export const getUserData = async () => {
 // Adding Category
 export const add_Category = async (category) => {
     try {
-        const res = await fetch(`${baseURl}/api/admin/category`, {
+        const res = await fetch(`/api/admin/category`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export const add_Category = async (category) => {
 // getting all categories data
 export const getCategoriesData = async () => {
     try {
-        const res = await fetch(`${baseURl}/api/admin/category`, {
+        const res = await fetch(`/api/admin/category`, {
             method: 'GET',
         })
         const data = await res.json();
@@ -57,7 +57,7 @@ export const getCategoriesData = async () => {
 export const deleteCategory = async (id) => {
     try {
         
-        const res = await fetch(`${baseURl}/api/admin/category?id=${id}`, {
+        const res = await fetch(`/api/admin/category?id=${id}`, {
             method: 'DELETE',
         })
         const data = await res.json()
@@ -71,7 +71,7 @@ export const deleteCategory = async (id) => {
 // getting Category by id
 export const getCategoryById = async (id) => {
     try {
-        const res = await fetch(`${baseURl}/api/admin/getCategoryById?id=${id}`, {
+        const res = await fetch(`/api/admin/getCategoryById?id=${id}`, {
             method: 'GET'
         })
         const data = await res.json();
@@ -87,7 +87,7 @@ export const update_Category = async (category) => {
     console.log(' i got call',category)
     try {
         console.log(' i got call',category)
-        const res = await fetch(`${baseURl}/api/admin/category`, {
+        const res = await fetch(`/api/admin/category`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -107,7 +107,7 @@ export const update_Category = async (category) => {
 // adding Product
 export const add_products = async (product) => {
     try {
-        const res = await fetch(`${baseURl}/api/admin/product`, {
+        const res = await fetch(`/api/admin/product`, {
             method: 'POST',
             headers:
             {
@@ -127,7 +127,7 @@ export const add_products = async (product) => {
 // getting all products data
 export const getProductsData = async (featured) => {
     try {
-        const url = featured ? `${baseURl}/api/admin/product?featured=${featured}&limit=8`:`${baseURl}/api/admin/product`
+        const url = featured ? `/api/admin/product?featured=${featured}&limit=8`:`${baseURl}/api/admin/product`
         const res = await fetch(url, {
             method: 'GET',
         })
@@ -142,7 +142,7 @@ export const getProductsData = async (featured) => {
 
 export const getOneProductById = async (id) => {
     try {
-        const res = await fetch(`${baseURl}/api/admin/product?id=${id}`, {
+        const res = await fetch(`/api/admin/product?id=${id}`, {
             method: 'GET'
         })
         const data = await res.json();
@@ -156,7 +156,7 @@ export const getOneProductById = async (id) => {
 // delete specific product
 export const delete_Product = async (id) => {
     try {
-        const res = await fetch(`${baseURl}/api/admin/product?id=${id}`, {
+        const res = await fetch(`/api/admin/product?id=${id}`, {
             method: 'DELETE',
         })
         const data = await res.json()
@@ -172,7 +172,7 @@ export const delete_Product = async (id) => {
 // getting Category by id
 export const getProductByID = async (id) => {
     try {
-        const res = await fetch(`${baseURl}/api/admin/getProductById?id=${id}`, {
+        const res = await fetch(`/api/admin/getProductById?id=${id}`, {
             method: 'GET'
         })
         const data = await res.json();
@@ -186,7 +186,7 @@ export const getProductByID = async (id) => {
 // updating Category
 export const update_product = async (product) => {
     try {
-        const res = await fetch(`${baseURl}/api/admin/product`, {
+        const res = await fetch(`/api/admin/product`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -207,7 +207,7 @@ export const update_product = async (product) => {
 
 export const get_Product_By_Category = async (id) => {
     try {
-        const res = await fetch(`${baseURl}/api/frontend/getProductByCategory?id=${id}`, {
+        const res = await fetch(`/api/frontend/getProductByCategory?id=${id}`, {
             method: "GET",
         });
         console.log(res)
@@ -223,7 +223,7 @@ export const get_Product_By_Category = async (id) => {
 
 export const add_to_cart = async (product) => {
     try {
-        const res = await fetch(`${baseURl}/api/frontend/cart`, {
+        const res = await fetch(`/api/frontend/cart`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -242,7 +242,7 @@ export const add_to_cart = async (product) => {
 
 export const get_cart_data = async (id) => {
     try {
-        const res = await fetch(`${baseURl}/api/frontend/cart?id=${id}`, {
+        const res = await fetch(`/api/frontend/cart?id=${id}`, {
             method: 'GET',
         })
         const data = await res.json();
@@ -257,7 +257,7 @@ export const get_cart_data = async (id) => {
 
 export const delete_cart_data = async (data) => {
     try {
-        const res = await fetch(`${baseURl}/api/frontend/cart?productId=${data.productID}&userId=${data.userId}`, {
+        const res = await fetch(`/api/frontend/cart?productId=${data.productID}&userId=${data.userId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -274,7 +274,7 @@ export const delete_cart_data = async (data) => {
 // --------------------------------- update cart data --------------------------------------------------------------------
 export const update_cart_data = async (data) => {
     try {
-        const res = await fetch(`${baseURl}/api/frontend/cart?productId=${data.productID}&userId=${data.user}&quantity=${data.quantity}`, {
+        const res = await fetch(`/api/frontend/cart?productId=${data.productID}&userId=${data.user}&quantity=${data.quantity}`, {
             method: 'PUT',
             headers: {
                 'Content-Type' : 'application/json',
