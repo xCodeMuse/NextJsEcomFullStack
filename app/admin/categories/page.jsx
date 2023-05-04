@@ -8,7 +8,7 @@ import Link from 'next/link';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function categories() {
+export default function Categories() {
     const [finalData, setFinalData] = useState([]);
     const [updateListFlag,setUpdateListFlag] = useState(0)
     const loadData = async() =>{

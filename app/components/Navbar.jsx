@@ -6,11 +6,13 @@ import Cookies from 'js-cookie'
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 export default function Navbar({pos}) {
     const token = Cookies.get('token');
     const [curUser, setCurUser] = useState(false);
     const [scrolled , isScrolled]  = useState(false);
+    const cartQuantity = useSelector((state) => state.cartData.totalQuantity)
     const router = useRouter()
     useEffect(() => {
         if (token) {
@@ -81,6 +83,7 @@ export default function Navbar({pos}) {
                      </ul>
             </div>
             <div className=' h-full  flex items-center  justify-around px-4'>
+            <span className={`dark:text-black mr-2 pt-1 ${scrolled && "dark:text-white"}`}>{curUser && cartQuantity}{console.log(cartQuantity)}</span>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

@@ -19,17 +19,7 @@ export default function cartPage() {
         if(getUser){
             const user = JSON.parse(getUser);
             setUserID(user?._id);
-            console.log(user?._id)
             dispatch(fetchCartById(user?._id));
-            // calculating Price 
-            // let cartPrice = 0;
-            //  for (let i = 0; i < data?.length; i++) {
-            //     const item = data[i];
-        
-            //     const itemPrice = parseInt(item.productPrice) * parseInt(item.productQuantity);
-            //     cartPrice += itemPrice;
-            // }
-            // setTotalPrice(cartPrice)
         }
         
     }
