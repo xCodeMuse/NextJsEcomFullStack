@@ -1,6 +1,6 @@
 
 // base URl for all api calls
-const baseURl = `http://localhost:3001`;
+const baseURl = process.env.host_name;;
 
 
 // getting all users data
