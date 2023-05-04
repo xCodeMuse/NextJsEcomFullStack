@@ -50,10 +50,10 @@ export default function ProdCard({ item }) {
 
     return (
        
-    <section className="m-2 rounded-xl w-72 h-80 bg-white p-4 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
+    <section className="m-2 rounded-xl w-80 h-90 bg-white p-4 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
       
-        <div className="w-full h-4/6 relative flex flex-row items-end overflow-hidden rounded-xl" onClick={() => router.push(`/product/${item?._id}`)}>
-          <img src={item.image} alt="Hotel Photo" className='w-full h-full object-fill' />
+        <div className="w-full h-5/6 relative flex flex-row items-end overflow-hidden rounded-xl" onClick={() => router.push(`/product/${item?._id}`)}>
+          <img src={item.image} alt="Hotel Photo" className='w-full h-80 object-cover' />
           {
                 item.featured && <p className='bg-gray-900 py-1  absolute flex items-center justify-center text-white text-center  text-sm  top-2  left-3 rounded-xl px-4'>Featured</p>
             }

@@ -30,39 +30,78 @@ export default function CartPage() {
 
 
     return (
-        <div className='w-full h-screen'>
-            {console.log(cartItem)}
-            <Navbar pos={""} />
-            <div className='w-full bg-white flex flex-col px-4 py-2'>
-                <h1 className='text-2xl font-bold mb-4 '>MY CART ITEMS</h1>
-                {
-                    cartItem?.cart?.length === 0 ? (
-                        <div className='w-full h-full  overflow-auto px-4 py-2 flex items-center justify-center flex-col'>
-                            <h1 className='text-2xl font-bold mb-4 dark:text-black'>No Items in Cart</h1>
-                            <Link href='/' className='w-52 h-12 bg-indigo-200 hover:bg-indigo-400 text-xl font-bold text-white flex items-center justify-center text-center rounded-xl'><BsCartPlusFill className='text-xl mx-2' />Start Shopping</Link>
-                        </div>
-                    ) : (
-                        <div className='w-full h-full  overflow-auto px-4 py-2'>
-                            {
-                                cartItem?.cart?.map((item) => {
-                                    return (
-                                        <CartCard item={item} key={item._id} userID={userID} reupdate={getLatestCartData} />
-                                    )
-                                })
-                            }
-                        </div>
-                    )
-                }
+     
+    <div className="bg-white">
+    <Navbar pos={""} />
+      <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Shopping Cart</h1>
+        <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
+          <section aria-labelledby="cart-heading" className="lg:col-span-7">
+            <h2 id="cart-heading" className="sr-only">
+              Items in your shopping cart
+            </h2>
 
+            <ul role="list" className="divide-y divide-gray-200 border-b border-t border-gray-200">
+              {cartItem?.cart?.map((item, productIdx) => (
+                <CartCard item={item} key={item._id} userID={userID} reupdate={getLatestCartData} />
+              ))}
+            </ul>
+          </section>
 
-                <div className='w-full p-2 flex items-end flex-col justify-center'>
-                    <h1 className='uppercase text-2xl font-bold py-3 border-b-2 border-gray-900 dark:text-black'>Total Price</h1>
-                    <p className='text-2xl font-semibold p-2 dark:text-black'>$ {cartItem?.totalPrice}</p>
-                    <button className='text-lg font-semibold bg-indigo-600 text-white uppercase px-4  py-2 cursor-pointer border-2 border-indigo-600 rounded-xl hover:bg-transparent hover:text-black duration-700 transition'>CheckOut</button>
-                </div>
+          {/* Order summary */}
+          <section
+            aria-labelledby="summary-heading"
+            className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
+          >
+            <h2 id="summary-heading" className="text-lg font-medium text-gray-900">
+              Order summary
+            </h2>
+
+            <dl className="mt-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <dt className="text-sm text-gray-600">Subtotal</dt>
+                <dd className="text-sm font-medium text-gray-900">${cartItem?.totalPrice}</dd>
+              </div>
+              <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+                <dt className="flex items-center text-sm text-gray-600">
+                  <span>Shipping estimate</span>
+                  <a href="#" className="ml-2 flex-shrink-0 text-gray-400 hover:text-gray-500">
+                    <span className="sr-only">Learn more about how shipping is calculated</span>
+                    ?
+                  </a>
+                </dt>
+                <dd className="text-sm font-medium text-gray-900">{cartItem?.totalQuantity > 0 && "$5.00"}</dd>
+              </div>
+              <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+                <dt className="flex text-sm text-gray-600">
+                  <span>Tax estimate</span>
+                  <a href="#" className="ml-2 flex-shrink-0 text-gray-400 hover:text-gray-500">
+                    <span className="sr-only">Learn more about how tax is calculated</span>
+                    ?
+                  </a>
+                </dt>
+                <dd className="text-sm font-medium text-gray-900">{cartItem?.totalQuantity > 0 && "$8.32"}</dd>
+              </div>
+              <div className="flex items-center justify-between border-t border-gray-200 pt-4">
+                <dt className="text-base font-medium text-gray-900">Order total</dt>
+                <dd className="text-base font-medium text-gray-900">${cartItem?.totalQuantity > 0 ? cartItem?.totalPrice + 5 + 8.32:0}</dd>
+              </div>
+            </dl>
+
+            <div className="mt-6">
+              <button
+                type="submit"
+                className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              >
+                Checkout
+              </button>
             </div>
-            <Footer />
+          </section>
+        </form>
+      </div>
+      <Footer />
             <ToastContainer />
-        </div >
+    </div>
+   
     )
 }

@@ -103,7 +103,7 @@ export default function ProductList() {
                           </span>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap text-center text-gray-500 dark:text-gray-300">
-                        <Image width={75} height={75} src={product.image} alt="product Image" />
+                        <img width={75} height={75} src={product.image} alt="product Image" />
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap text-center text-sm font-medium">
                           
