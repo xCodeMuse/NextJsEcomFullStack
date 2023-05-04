@@ -8,7 +8,7 @@ import Link from 'next/link';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function getProducts() {
+export default function ProductList() {
     const [finalData, setFinalData] = useState([]);
     const [updateListFlag,setUpdateListFlag] = useState(0)
     useEffect(() => {

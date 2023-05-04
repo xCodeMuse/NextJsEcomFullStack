@@ -15,19 +15,20 @@ export default function ProdCard({ params }) {
     const [product,setProduct] = useState(undefined)
     const dispatch = useDispatch()
 
-    const fetchProductData =async() =>{
-        const data = await getOneProductById(params.id);
-        console.log('fetching product data')
-        if(data){
-            setProduct(data)
-        }
-    }
+   
     useEffect(() => {
         if (token) {
             const getUser = localStorage.getItem('user')
             const user = JSON.parse(getUser);
             setUserID(user._id)
         }
+        const fetchProductData =async() =>{
+          const data = await getOneProductById(params.id);
+          console.log('fetching product data')
+          if(data){
+              setProduct(data)
+          }
+      }
         fetchProductData()
     }, [])
 

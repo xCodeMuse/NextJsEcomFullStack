@@ -8,7 +8,7 @@ import Sidebar_com from '../components/Sidebar_com';
 import Profile from '../components/Profile';
 import { useRouter } from 'next/navigation';
 
-export default function dashboard() {
+export default function Dashboard() {
   const router = useRouter()
   // storing token in variable token 
   const token = Cookies.get('token');

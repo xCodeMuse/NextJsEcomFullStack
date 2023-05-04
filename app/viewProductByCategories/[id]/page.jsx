@@ -7,22 +7,22 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function viewProductByCategories({ params }) {
+export default function ViewProductByCategories({ params }) {
     const [catName, setCatName] = useState(undefined);
     const [product,setProduct] = useState([])
 
-    const fetchProductsByCat = async() =>{
-        const productList = await get_Product_By_Category(params.id);
-        
-        if(productList.length >0){
-            setProduct(productList)
-            setCatName(productList[0].category.name);
-        }
-    }
-
     useEffect(() => {
+        const fetchProductsByCat = async() =>{
+            const {id} = params
+            const productList = await get_Product_By_Category(id);
+            
+            if(productList.length >0){
+                setProduct(productList)
+                setCatName(productList[0].category.name);
+            }
+        }
         fetchProductsByCat()
-    },[])
+    },[params])
 
     return (
         <>

@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function register() {
+export default function Register() {
     // storing form data in state
     const [formData, setFormData] = useState({ name: "", email: "", password: "", cPassword: "" });
 

@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 
-export default function login() {
+export default function Login() {
     // storing form data in state   
     const [formData, setFormData] = useState({ email: '', password: '' })
     const router = useRouter()

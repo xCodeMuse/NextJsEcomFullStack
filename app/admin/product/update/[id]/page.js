@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 
-export default function updateProducts({ params }) {
+export default function UpdateProducts({ params }) {
 
     const router = useRouter()
     const [cateData, setCateData] = useState({});

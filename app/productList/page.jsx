@@ -9,7 +9,7 @@ import { Navbar, Footer,ProdCard} from '@/app/components'
 
 
 export default function Products({ params }) {
-    const token = Cookies.get('token');
+    
     const [userID, setUserID] = useState(undefined);
     const [products,setProducts] = useState(undefined)
 
@@ -21,6 +21,7 @@ export default function Products({ params }) {
         }
     }
     useEffect(() => {
+        const token = Cookies.get('token');
         if (token) {
             const getUser = localStorage.getItem('user')
             const user = JSON.parse(getUser);
@@ -29,22 +30,7 @@ export default function Products({ params }) {
         fetchProductData()
     }, [])
 
-    const AddtoCart = async () => {
-        console.log("adding item to cart",token,userID)
-        if (!token) {
-            toast.error('Please login ', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            return;
-        }
-
-    }
+  
 
     return (
         <>

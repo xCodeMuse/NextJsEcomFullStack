@@ -9,7 +9,7 @@ import { BsCartPlusFill } from 'react-icons/bs'
 import { addToCart,fetchCart ,fetchCartById} from '../store/Slices/cartSlice';
 import { useSelector, useDispatch } from "react-redux";
 
-export default function cartPage() {
+export default function CartPage() {
     const cartItem = useSelector((state) => state.cartData)
     const [userID, setUserID] = useState(undefined);
     const dispatch = useDispatch()

@@ -8,7 +8,7 @@ import FileBase from 'react-file-base64'
 import { add_products , getCategoriesData } from '@/app/services'
 
 
-export default function addProduct() {
+export default function AddProduct() {
     const [formData, setFormData] = useState({ category  : '' , name: '',price : undefined , quantity : undefined , slug: '', description: '', featured: false, image: '' })
     const [data,setData] = useState([])
 

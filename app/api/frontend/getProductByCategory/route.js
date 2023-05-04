@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import connectDB from "../../../database/connectDB";
 import Product from "../../../database/models/Product";
 
@@ -8,7 +9,7 @@ export async function GET(req )
     
     const id = req.nextUrl.searchParams.get('id')
     try {
-        const data = await Product.find({category : id}).populate("category" , "name");
+        const data = await Product.find({category :  mongoose.Types.ObjectId(id)}).populate("category" , "name");
         return new Response(JSON.stringify(data), {
             status:200,
             headers: {

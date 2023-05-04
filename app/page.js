@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function landingPage () {
+export default function LandingPage () {
     const [category, setCategory] = useState()
     const [products,setProducts] = useState()
     
