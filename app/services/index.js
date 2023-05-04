@@ -274,17 +274,18 @@ export const delete_cart_data = async (data) => {
 // --------------------------------- update cart data --------------------------------------------------------------------
 export const update_cart_data = async (data) => {
     try {
-        const res = await fetch(`${baseURl}/api/frontend/cart`, {
+        const res = await fetch(`${baseURl}/api/frontend/cart?productId=${data.productID}&userId=${data.user}&quantity=${data.quantity}`, {
             method: 'PUT',
             headers: {
                 'Content-Type' : 'application/json',
             },
-            body: JSON.stringify(data)
         })
+        console.log(res,'logger from service')
         const reply = await res.json(); 
+        console.log(reply,'reply logg')
         return reply;
     } catch (error) {
-        console.log('error at updating cart data (services) => ' + error)
+        console.log('error at updating cart data (services) => ' + error.message)
     }
 
 }

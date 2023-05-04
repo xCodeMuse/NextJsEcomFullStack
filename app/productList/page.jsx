@@ -1,7 +1,7 @@
 
 "use client"
 import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify';
+import { toast,ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
 import { add_to_cart, getProductsData } from '@/app/services';
@@ -64,7 +64,8 @@ export default function Products({ params }) {
                 {!products && <><div className='w-72 h-80 bg-gray-200 border border-gray-200 rounded animate-pulse'/><div className='w-72 h-80 mx-4 bg-gray-200 border border-gray-200 rounded animate-pulse'/><div className='w-72 h-80 bg-gray-200 border border-gray-200 rounded animate-pulse'/></> }
 
             </div>
-      <Footer />
+            <ToastContainer />
+        <Footer />
         </>
         
     )

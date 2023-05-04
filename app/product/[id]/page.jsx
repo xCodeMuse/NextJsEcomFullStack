@@ -1,7 +1,7 @@
 
 "use client"
 import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify';
+import { toast ,ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
 import { getOneProductById } from '@/app/services';
@@ -32,7 +32,7 @@ export default function ProdCard({ params }) {
     }, [])
 
     const AddtoCart = async () => {
-      console.log(product)
+      console.log(product,token)
       try{
         if (!token) {
             toast.error('Please login ', {
@@ -45,14 +45,16 @@ export default function ProdCard({ params }) {
                 progress: undefined,
             });
             return;
-        }
-
-        if (userID && product) {
+        }else{
+          if (userID && product) {
             const { _id, name, image, price } = product;
             const data = { productID: _id, productName: name, productImage: image, productPrice: price, user: userID , productQuantity: 1} 
             dispatch(addToCart(data)) 
             toast.success('Product Successfully added to cart')
-        } 
+          } 
+        }
+
+        
        }catch(e){
         toast.error(e)
       }
@@ -103,6 +105,7 @@ export default function ProdCard({ params }) {
           </div>
         </div>
       </section>
+      <ToastContainer />
       <Footer />
         </>
         
