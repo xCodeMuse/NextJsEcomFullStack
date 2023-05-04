@@ -31,7 +31,7 @@ const add_to_cart = async (req, res) => {
     try {
 
         const checkProd = await Cart.findOne({ $and: [{ productID }, { user }] });
-        console.log('checkprod',checkProd)
+        
         if (checkProd){ 
           checkProd.productQuantity += 1;
           await checkProd.save()
@@ -42,8 +42,13 @@ const add_to_cart = async (req, res) => {
           },
         });
         }else{
-          const newCartItem = await cart.create(data);
-          return res.status(200).json({ msg: "Product added to cart",_id:newCartItem._id })
+          const newCartItem = await Cart.create(data);
+          return new Response(JSON.stringify({ msg: "Product added to cart",_id:newCartItem._id }), {
+            status: 200,
+            headers: {
+              'content-type': 'application/json',
+            },
+          });
         }
 
     } catch (error) {

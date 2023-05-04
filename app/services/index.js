@@ -127,7 +127,7 @@ export const add_products = async (product) => {
 // getting all products data
 export const getProductsData = async (featured) => {
     try {
-        const url = featured ? `/api/admin/product?featured=${featured}&limit=8`:`${baseURl}/api/admin/product`
+        const url = featured ? `/api/admin/product?featured=${featured}&limit=8`:`/api/admin/product`
         const res = await fetch(url, {
             method: 'GET',
         })

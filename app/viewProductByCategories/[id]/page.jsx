@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function ViewProductByCategories({ params }) {
     const [catName, setCatName] = useState(undefined);
-    const [product,setProduct] = useState([])
+    const [product,setProduct] = useState(undefined)
 
     useEffect(() => {
         const fetchProductsByCat = async() =>{
@@ -36,7 +36,10 @@ export default function ViewProductByCategories({ params }) {
                             return <ProdCard item={item} key={item._id} />
                         })
                     }
+                    {!product && <><div className='w-72 h-80 bg-gray-200 border border-gray-200 rounded animate-pulse'/><div className='w-72 h-80 mx-4 bg-gray-200 border border-gray-200 rounded animate-pulse'/><div className='w-72 h-80 bg-gray-200 border border-gray-200 rounded animate-pulse'/></> }
                 </div>
+                
+
             </div>
             <Footer />
         </div>
