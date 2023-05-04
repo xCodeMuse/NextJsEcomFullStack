@@ -1,11 +1,11 @@
 
 // base URl for all api calls
 const baseURl = process.env.host_name;;
-
+console.log(baseURl,'env baseUrl')
 
 // getting all users data
 export const getUserData = async () => {
-
+    
     try {
         const res = await fetch(`${baseURl}/api/admin/user`, {
             method: 'GET',
