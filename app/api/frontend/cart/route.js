@@ -20,7 +20,13 @@ export async function PUT(request) {
 
 export async function DELETE(request) {
   await connectDB();
-  return await delete_cart_data(request)
+  const action = request.nextUrl.searchParams.get('action')
+  if(request){
+    return await clear_cart_data(request)
+  }else{
+    return await delete_cart_data(request)
+  }
+ 
 }
 
 
@@ -117,6 +123,37 @@ const delete_cart_data = async (req, res) => {
 
 }
 
+const clear_cart_data = async (req, res) => {
+
+  console.log(req,'delete request')
+  const user = req.nextUrl.searchParams.get('userId')
+  const action = req.nextUrl.searchParams.get('productId')
+  if(!user){
+    return new Response(JSON.stringify({msg:'user id param is required'}))
+  }
+  try { 
+
+      await Cart.deleteMany({ user });
+      return new Response(JSON.stringify({ msg: "Order placed and cart cleared successfully." }), {
+        status: 200,
+        headers: {
+          'content-type': 'application/json',
+        },
+      });
+
+  } catch (error) {
+
+      console.log('error in deleting product from cart (server) => ' + error)
+      return new Response(JSON.stringify({ error: "Something went wrong" }), {
+        status: 500,
+        headers: {
+          'content-type': 'application/json',
+        },
+      });
+
+  }
+
+}
 
 const update_cart_data = async (req) => {
   

@@ -5,7 +5,7 @@ import Sidebar_com from '../components/Sidebar_com'
 export default async function User() {
     const data = await getUserData()|| [];
 
-    const listData = await Promise.all([data])
+    await Promise.all([data])
     return (
 
         <div className='w-full h-screen bg-slate-900 flex'>

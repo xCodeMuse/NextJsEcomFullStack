@@ -6,8 +6,9 @@ console.log(baseURl,'env baseUrl')
 // getting all users data
 export const getUserData = async () => {
     
-    try {
-        const res = await fetch(`/api/admin/user`, {
+    try {   
+        const url = process.env.NODE_ENV === "development" ? `${baseURl}/api/admin/user`:'/api/admin/user'
+        const res = await fetch(url, {
             method: 'GET',
         })
         const data = await res.json();
@@ -270,6 +271,25 @@ export const delete_cart_data = async (data) => {
     }
 }
 
+
+
+
+// --------------------------------- clearcart data --------------------------------------------------------------------
+
+export const clear_cart_data = async (data) => {
+    try {
+        const res = await fetch(`/api/frontend/cart?userId=${data.userId}&action=clearCart`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        const reply = await res.json();
+        return reply;
+    } catch (error) {
+        console.log('error at deleting cart data (services) => ' + error)
+    }
+}
 
 // --------------------------------- update cart data --------------------------------------------------------------------
 export const update_cart_data = async (data) => {

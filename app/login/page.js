@@ -28,7 +28,7 @@ export default function Login() {
                     }
                     else
                     {
-                        router.push('/frontend/landing')
+                        router.push('/')
                     }
                 })
                 .catch((error) => {

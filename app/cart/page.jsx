@@ -1,18 +1,17 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import{ Navbar, Footer, CartCard } from '@/app/components'
-import { get_cart_data } from '@/app/services'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Link from 'next/link'
-import { BsCartPlusFill } from 'react-icons/bs'
-import { addToCart,fetchCart ,fetchCartById} from '../store/Slices/cartSlice';
+import { fetchCartById} from '../store/Slices/cartSlice';
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from 'next/navigation';
 
 export default function CartPage() {
     const cartItem = useSelector((state) => state.cartData)
     const [userID, setUserID] = useState(undefined);
     const dispatch = useDispatch()
+    const router = useRouter()
     const getLatestCartData = async () => {
         const getUser = localStorage.getItem('user');
 
@@ -36,6 +35,7 @@ export default function CartPage() {
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Shopping Cart</h1>
         <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
+        <h4 id="cart-heading text-black" className="sr-only">Please login to items to cart</h4>
           <section aria-labelledby="cart-heading" className="lg:col-span-7">
             <h2 id="cart-heading" className="sr-only">
               Items in your shopping cart
@@ -43,9 +43,11 @@ export default function CartPage() {
 
             <ul role="list" className="divide-y divide-gray-200 border-b border-t border-gray-200">
               {cartItem?.cart?.map((item, productIdx) => (
-                <CartCard item={item} key={item._id} userID={userID} reupdate={getLatestCartData} />
+                <CartCard item={item} key={item._id} index={productIdx} userID={userID} reupdate={getLatestCartData} />
               ))}
+               
             </ul>
+           
           </section>
 
           {/* Order summary */}
@@ -90,7 +92,8 @@ export default function CartPage() {
 
             <div className="mt-6">
               <button
-                type="submit"
+                type="button"
+                onClick={() => router.push('/completeOrder')}
                 className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
               >
                 Checkout

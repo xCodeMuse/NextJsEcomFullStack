@@ -1,5 +1,5 @@
 import {  createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { add_to_cart,delete_cart_data,update_cart_data,get_cart_data } from "@/app/services";
+import { add_to_cart,delete_cart_data,update_cart_data,get_cart_data,clear_cart_data } from "@/app/services";
 import { ToastContainer, toast } from 'react-toastify';
 
 const initialState = {
@@ -34,8 +34,7 @@ export const updateCart = createAsyncThunk(
     'users/updateCart',
     async (data, thunkAPI) => {
         try{    
-            const res = await update_cart_data(data);
-            console.log(res)
+            await update_cart_data(data);
             return {quantity:data.quantity,productID:data.productID}
         }catch(e){
             console.log('Problem addding to cart')
@@ -47,10 +46,24 @@ export const removeFromCart = createAsyncThunk(
     'users/removeFromCart',
     async (data, thunkAPI) => {
         try{
-            const res = await delete_cart_data(data);
+            await delete_cart_data(data);
             return {productID:data.productID}
         }catch(e){
             console.log('Problem addding to cart')
+        }
+      
+    }
+  )
+
+  export const clearCart = createAsyncThunk(
+    'users/clearCart',
+    async (data, thunkAPI) => {
+        try{    
+            console.log(data)
+            await clear_cart_data(data);
+            return
+        }catch(e){
+            console.log('Problem clearing cart')
         }
       
     }
@@ -65,7 +78,6 @@ export const CartSlice = createSlice({
         // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(fetchCartById.fulfilled, (state, action) => {
           // Add cart data to the state array
-          console.log(action,'builder case')
             const data = action.payload
             let quantity = 0
             let totalPrice = 0;
@@ -103,7 +115,7 @@ export const CartSlice = createSlice({
             // remove product datafrom the cart state array
         
             const newCartState = [] 
-            state.cart.map(val =>{
+            state.cart.forEach(val =>{
                     if(val.productID === action.payload.productID){
                         val.productQuantity = action.payload.quantity
                         newCartState.push(val)
@@ -113,7 +125,6 @@ export const CartSlice = createSlice({
                 })
             let quantity = 0
             let totalPrice = 0;
-            console.log(newCartState)
             newCartState.forEach(val =>{
                 quantity += val.productQuantity
                 totalPrice += val.productPrice * val.productQuantity
@@ -122,6 +133,14 @@ export const CartSlice = createSlice({
             state.totalPrice = totalPrice
             state.totalQuantity = quantity
             state.cart = newCartState
+        }).addCase(clearCart.fulfilled,(state,action) =>{
+            // clear cart data from state object
+        
+                state.cart = []
+                state.totalPrice = 0
+                state.totalQuantity = 0
+                toast.success("Order placed successfully")
         })
       }
 })
+
