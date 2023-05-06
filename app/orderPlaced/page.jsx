@@ -16,12 +16,12 @@ export default async function OrderComplete() {
               </path>
           </svg>
           <div class="text-center">
-              <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Payment Done!</h3>
-              <p class="text-gray-600 my-2">Thank you for completing your secure online payment.</p>
+              <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Order placed!</h3>
+              <p class="text-gray-600 my-2">Thank you for completing your order.</p>
               <p> Have a great day!  </p>
               <div class="py-10 text-center">
                   <a onClick={() => router.push('/')} class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
-                      GO BACK 
+                      Continue Shopping
                  </a>
               </div>
           </div>

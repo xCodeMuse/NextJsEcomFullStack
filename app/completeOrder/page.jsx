@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from '../store/Slices/cartSlice';
 import { useRouter } from 'next/navigation';
 
-export default async function OrderComplete() {
+export default function OrderComplete() {
     const cartItem = useSelector((state) => state?.cartData)
     const [formState,setFormState] = useState({firstName:undefined,lastName:undefined,email:undefined,phone:undefined})
     const dispatch = useDispatch()
@@ -14,11 +14,20 @@ export default async function OrderComplete() {
     const completeOrder = () =>{
       
       const getUser = localStorage.getItem('user');
-
+      
       if(getUser){
           const user = JSON.parse(getUser);
+          if(!user || cartItem?.cart?.length === 0){
+            if(!user._id){
+              toast.dark('login to add items into cart.')
+            }
+            if(cartItem?.cart?.length === 0){
+              toast.dark('Add items into cart to checkout.')
+            }
+          }
           console.log(user)
           dispatch(clearCart({userId:user._id}))
+          console.log()
           router.push('/orderPlaced')
       }
     }
@@ -168,9 +177,8 @@ export default async function OrderComplete() {
           <div className="col-span-6">
             <button
               type="button"
-              disabled={formState}
               className="block w-full rounded-md bg-black p-2.5 text-sm text-white transition hover:shadow-lg"
-              onClick={() =>completeOrder()}
+              onClick={completeOrder}
             >
               Complete Purchase
             </button>

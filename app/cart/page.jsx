@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import{ Navbar, Footer, CartCard } from '@/app/components'
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchCartById} from '../store/Slices/cartSlice';
 import { useSelector, useDispatch } from "react-redux";
@@ -27,7 +27,19 @@ export default function CartPage() {
         getLatestCartData();
     }, [])
 
-
+    const checkout = () =>{
+      if(!userID || cartItem?.cart?.length === 0){
+        if(!userID){
+          toast.dark('login to add items into cart.')
+        }
+        if(cartItem?.cart?.length === 0){
+          toast.dark('Add items to cart into checkout.')
+        }
+      }else{
+        router.push('/completeOrder')
+      }
+    }
+    
     return (
      
     <div className="bg-white">
@@ -93,7 +105,7 @@ export default function CartPage() {
             <div className="mt-6">
               <button
                 type="button"
-                onClick={() => router.push('/completeOrder')}
+                onClick={() => checkout()}
                 className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
               >
                 Checkout
