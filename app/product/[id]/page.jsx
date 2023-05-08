@@ -15,7 +15,6 @@ export default function ProdCard({ params }) {
     const [product,setProduct] = useState(undefined)
     const dispatch = useDispatch()
 
-   
     useEffect(() => {
         if (token) {
             const getUser = localStorage.getItem('user')
@@ -28,12 +27,11 @@ export default function ProdCard({ params }) {
           if(data){
               setProduct(data)
           }
-      }
+        }
         fetchProductData()
     }, [])
 
     const AddtoCart = async () => {
-      console.log(product,token)
       try{
         if (!token) {
             toast.error('Please login ', {
@@ -54,8 +52,6 @@ export default function ProdCard({ params }) {
             toast.success('Product Successfully added to cart')
           } 
         }
-
-        
        }catch(e){
         toast.error(e)
       }

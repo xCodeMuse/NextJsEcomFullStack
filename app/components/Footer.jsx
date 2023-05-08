@@ -1,6 +1,8 @@
 import { ChevronRight } from 'lucide-react'
 import React from 'react'
 
+// DevUI.io Footer Component https://www.devui.io/components/footer
+
 export default function Footer() {
     return (
       <footer className="w-full">

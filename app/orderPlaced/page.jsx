@@ -4,9 +4,9 @@ import{ Navbar, Footer } from '@/app/components'
 import { useRouter } from 'next/navigation'
 
 export default async function OrderComplete() {
-    const router = useRouter()
-    return (
+    const router = useRouter();
 
+    return (
         <div class="bg-gray-100 h-screen">
             <Navbar />
         <div class="bg-white p-6  md:mx-auto">

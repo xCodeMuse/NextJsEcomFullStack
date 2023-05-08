@@ -7,9 +7,11 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 
 export default function Login() {
+  
     // storing form data in state   
     const [formData, setFormData] = useState({ email: '', password: '' })
     const router = useRouter()
+
     // handling form data and sending it to backend
     const handleSubmit = async (e) => {
         e.preventDefault()

@@ -2,12 +2,15 @@ import {  createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { add_to_cart,delete_cart_data,update_cart_data,get_cart_data,clear_cart_data } from "@/app/services";
 import { ToastContainer, toast } from 'react-toastify';
 
+// Initial Redux State Value
 const initialState = {
     cart: [],
     totalQuantity: 0,
     totalPrice: 0,
 };
 
+
+// Method to call Api to fetch cart data by userId
 export const fetchCartById = createAsyncThunk(
     'users/fetchCartData',
     async (userId, thunkAPI) => {
@@ -16,6 +19,7 @@ export const fetchCartById = createAsyncThunk(
     }
   )
 
+// Method to call Api to add new product to cart
 export const addToCart = createAsyncThunk(
     'users/addToCart',
     async (data, thunkAPI) => {
@@ -29,7 +33,7 @@ export const addToCart = createAsyncThunk(
     }
 )
 
-
+// Method to call Api to add new product to cart
 export const updateCart = createAsyncThunk(
     'users/updateCart',
     async (data, thunkAPI) => {
@@ -42,6 +46,7 @@ export const updateCart = createAsyncThunk(
     }
 )
 
+// Method to call Api to remove product from cart
 export const removeFromCart = createAsyncThunk(
     'users/removeFromCart',
     async (data, thunkAPI) => {
@@ -55,7 +60,8 @@ export const removeFromCart = createAsyncThunk(
     }
   )
 
-  export const clearCart = createAsyncThunk(
+// Method to call Api to clear cart
+export const clearCart = createAsyncThunk(
     'users/clearCart',
     async (data, thunkAPI) => {
         try{    
@@ -68,6 +74,7 @@ export const removeFromCart = createAsyncThunk(
       
     }
   )
+
 
 export const CartSlice = createSlice({
     name: 'cartData',

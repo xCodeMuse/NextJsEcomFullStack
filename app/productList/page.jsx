@@ -1,10 +1,10 @@
 
 "use client"
 import React, { useEffect, useState } from 'react'
-import { toast,ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
-import { add_to_cart, getProductsData } from '@/app/services';
+import { getProductsData } from '@/app/services';
 import { Navbar, Footer,ProdCard} from '@/app/components'
 
 
@@ -15,7 +15,6 @@ export default function Products({ params }) {
 
     const fetchProductData =async() =>{
         const data = await getProductsData();
-        console.log('fetching product data')
         if(data){
             setProducts(data)
         }
