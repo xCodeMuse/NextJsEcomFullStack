@@ -151,7 +151,7 @@ export default function Navbar({pos}) {
                           src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                           alt=""
                         />
-                      </Menu.Button>: <Link href={`/login`}> <BiLogIn id="login" className={`text-2xl  mx-4  hover:text-orange-600 transition-all duration-500 cursor-pointer text-white`} onClick={() => {router.push('/login')}}  /></Link>}
+                      </Menu.Button>: <Link href={`/login`}> Login</Link>}
                     </div>
                     <Transition
                       as={Fragment}

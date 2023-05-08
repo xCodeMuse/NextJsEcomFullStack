@@ -4,6 +4,7 @@ import{ Navbar, Footer } from '@/app/components'
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from '../store/Slices/cartSlice';
 import { useRouter } from 'next/navigation';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function OrderComplete() {
     const cartItem = useSelector((state) => state?.cartData)
@@ -12,7 +13,11 @@ export default function OrderComplete() {
     const router = useRouter()
 
     const completeOrder = () =>{
-      
+      const{firstName,lastName,phone,email} = formState
+      if(!firstName || !lastName || !phone || !email){
+        toast.error('Please fill the form to continue')
+        return
+      }
       const getUser = localStorage.getItem('user');
       
       if(getUser){
@@ -101,10 +106,10 @@ export default function OrderComplete() {
             >
               First Name
             </label>
-
             <input
               type="text"
               id="FirstName"
+              onChange={(val) => setFormState({...formState,firstName:val.target.value})}
               className="mt-1 w-full h-12 rounded-md border-width-1 border-black-600 shadow-sm sm:text-sm text-black px-2"
             />
           </div>
@@ -120,6 +125,7 @@ export default function OrderComplete() {
             <input
               type="text"
               id="LastName"
+              onChange={(val) => setFormState({...formState,lastName:val.target.value})}
               className="mt-1 w-full h-12 rounded-md border-gray-200 shadow-sm sm:text-sm text-black px-2"
             />
           </div>
@@ -132,6 +138,7 @@ export default function OrderComplete() {
             <input
               type="email"
               id="Email"
+              onChange={(val) => setFormState({...formState,email:val.target.value})}
               className="mt-1 w-full h-12 rounded-md border-gray-200 shadow-sm sm:text-sm text-black px-2"
             />
           </div>
@@ -144,6 +151,7 @@ export default function OrderComplete() {
             <input
               type="tel"
               id="Phone"
+              onChange={(val) => setFormState({...formState,phone:val.target.value})}
               className="mt-1 w-full h-12 rounded-md border-gray-200 shadow-sm sm:text-sm text-black px-2"
             />
           </div>
@@ -188,6 +196,8 @@ export default function OrderComplete() {
     </div>
     
   </div>
+  <Footer />
+  <ToastContainer />
 </section>   
     )
 }
