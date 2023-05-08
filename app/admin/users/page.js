@@ -3,12 +3,12 @@ import React,{Suspense} from 'react'
 import Sidebar_com from '../components/Sidebar_com'
 
 export default async function User() {
-    const data = await getUserData()|| [];
+    const data = await getUserData();
 
     await Promise.all([data])
     return (
-
         <div className='w-full h-screen bg-slate-900 flex'>
+          {console.log(data)}
             <Sidebar_com />
             <div className='w-10/12 h-full text-white'>
                 <div className='w-full p-4  mt-10 mb-4 flex items-center justify-center'>

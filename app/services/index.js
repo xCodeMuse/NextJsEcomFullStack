@@ -1,7 +1,7 @@
 
 // base URl for all api calls
 const baseURl = process.env.host_name;
-console.log(baseURl,'env baseUrl')
+console.log(baseURl,process.env.DB_URI,'env baseUrl')
 
 // getting all users data
 export const getUserData = async () => {

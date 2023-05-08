@@ -32,7 +32,7 @@ export default function CartPage() {
         if(!userID){
           toast.dark('login to add items into cart.')
         }else if(cartItem?.cart?.length === 0){
-          toast.dark('Add items to cart into checkout.')
+          toast.dark('Add items into cart.')
         }
       }else{
         router.push('/completeOrder')
