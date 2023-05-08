@@ -7,7 +7,7 @@ console.log(baseURl,'env baseUrl')
 export const getUserData = async () => {
     
     try {   
-        const url = process.env.NODE_ENV === "development" ? `${baseURl}/api/admin/user`:'/api/admin/user'
+        const url = `${baseURl}/api/admin/user`
         const res = await fetch(url, {
             method: 'GET',
         })

@@ -31,8 +31,7 @@ export default function CartPage() {
       if(!userID || cartItem?.cart?.length === 0){
         if(!userID){
           toast.dark('login to add items into cart.')
-        }
-        if(cartItem?.cart?.length === 0){
+        }else if(cartItem?.cart?.length === 0){
           toast.dark('Add items to cart into checkout.')
         }
       }else{
