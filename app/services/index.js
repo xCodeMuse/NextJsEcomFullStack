@@ -8,6 +8,7 @@ export const getUserData = async () => {
     
     try {   
         const url = `${baseURl}/api/admin/user`
+        console.log(url)
         const res = await fetch(url, {
             method: 'GET',
         })
