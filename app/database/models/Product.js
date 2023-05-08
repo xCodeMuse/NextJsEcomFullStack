@@ -12,6 +12,6 @@ const ProductsSchema = mongoose.Schema({
     slug : { type : String , required : true}
 },{ timestamps: true });
 
-const Product = mongoose.models.Product || mongoose.model('Product', ProductsSchema);
+const Product = mongoose.model('Product', ProductsSchema);
 
 export default Product;
