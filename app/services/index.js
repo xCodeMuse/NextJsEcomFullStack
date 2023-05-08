@@ -1,6 +1,6 @@
 
 // base URl for all api calls
-const baseURl = process.env.host_name;;
+const baseURl = process.env.HOST_NAME;;
 console.log(baseURl,'env baseUrl')
 
 // getting all users data
