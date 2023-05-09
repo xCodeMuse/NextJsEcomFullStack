@@ -3,13 +3,13 @@ import User from "../../../database/models/User";
 
 
 
-export async function GET(req) {
+export async function GET(req,res) {
 
     await connectDB('user get');
-    
+
     try {
         const data = await User.find({ "isAdmin": false });
-        if (data) {
+        if (data) { 
             return new Response(JSON.stringify(data), {
                 status: 200,
                 headers: {

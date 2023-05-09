@@ -1,7 +1,7 @@
 
 // base URl for all api calls
 const baseURl = process.env.host_name;
-console.log(baseURl,process.env.DB_URI,'env baseUrl')
+
 
 // getting all users data
 export const getUserData = async () => {
@@ -9,11 +9,22 @@ export const getUserData = async () => {
     try {   
         const url = `${baseURl}/api/admin/user`
         console.log(url)
-        const res = await fetch(url, {
+        fetch(url, {
             method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+            },
+        }).then(res =>{
+            return JSON.parse(res)
+        }).then(data =>{
+            return data
+        }).catch(err =>{
+            console.log(err)
         })
-        const data = await res.json();
-        return data;
+        //console.log(await res.text()) 
+        // const data = JSON.parse(res)
+        // console.log(data)
+        // return data;
     } catch (error) {
         console.log('error in fetching user data for admin (services) => ' + error)
     }

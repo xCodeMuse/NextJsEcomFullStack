@@ -50,6 +50,7 @@ export default async function User() {
               className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
               {
                 data?.map((user) => {
+                {console.log(user)}
                 return (
                 <tr key={user._id}>
                 <td className="py-4 px-4 whitespace-nowrap">
