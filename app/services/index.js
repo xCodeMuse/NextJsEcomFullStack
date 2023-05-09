@@ -9,22 +9,16 @@ export const getUserData = async () => {
     try {   
         const url = `${baseURl}/api/admin/user`
         console.log(url)
-        fetch(url, {
+        const res = fetch(url, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
             },
-        }).then(res =>{
-            return JSON.parse(res)
-        }).then(data =>{
-            return data
-        }).catch(err =>{
-            console.log(err)
         })
-        //console.log(await res.text()) 
-        // const data = JSON.parse(res)
-        // console.log(data)
-        // return data;
+       
+        const data = (await res).json()
+        
+        return data;
     } catch (error) {
         console.log('error in fetching user data for admin (services) => ' + error)
     }
